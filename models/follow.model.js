@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const AppError = require('./../errors/AppError');
+const mongooseHidden = require('mongoose-hidden');
 const { Schema } = mongoose;
 const { ObjectId } = mongoose.SchemaTypes;
 
@@ -9,13 +10,15 @@ const followSchema = new Schema({
   createdAt: { type: Date, default: () => new Date(), index: 1 },
 });
 
+followSchema.plugin(mongooseHidden({}));
+
 followSchema.index({ follower: 1, following: 1 }, { unique: true });
 
 followSchema.static('follow', async function(followerId, followingId) {
   try {
     await this.create({
-      followerId,
-      followingId,
+      follower: followerId,
+      following: followingId,
     });
   } catch (err) {
     if (err.code === 11000) {

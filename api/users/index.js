@@ -19,10 +19,6 @@ module.exports = app => {
     res.json({ result: await User.findByIds(ids) });
   });
 
-  router.post('/follow', async () => {
-    throw new APIError('NOT_IMPLEMENTED', 501);
-  });
-
   router.use(errorHandler());
 
   app.use('/users', router);

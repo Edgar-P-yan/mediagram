@@ -23,6 +23,10 @@ userSchema.plugin(
   mongooseHidden({ defaultHidden: { _id: false, providers: true } }),
 );
 
+userSchema.static('exists', async function(id) {
+  return !!(await this.findById(id, { _id: true }));
+});
+
 userSchema.static('findByVkId', function(vkId, ...args) {
   return this.findOne(
     {

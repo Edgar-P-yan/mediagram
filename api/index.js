@@ -6,6 +6,7 @@ module.exports = app => {
 
   require('./users')(router);
   require('./posts')(router);
+  require('./follows')(router);
 
   app.use('/api', router, errorHandler());
 };
