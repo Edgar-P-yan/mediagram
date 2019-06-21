@@ -19,6 +19,8 @@ module.exports = app => {
     res.json({ result: await User.findByIds(ids) });
   });
 
+  router.get('/profile', require('./controllers/get-profile')());
+
   router.use(errorHandler());
 
   app.use('/users', router);

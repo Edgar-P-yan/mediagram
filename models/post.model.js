@@ -17,6 +17,21 @@ postSchema.static('exists', async function(id) {
   return !!(await this.findById(id, { _id: true }));
 });
 
+postSchema.static('getPaginatedPosts', async function(author, skip, limit) {
+  const [count, posts] = await Promise.all([
+    this.find({ author }).count(),
+    this.find({ author })
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit),
+  ]);
+
+  return {
+    count,
+    posts,
+  };
+});
+
 const Post = mongoose.model('Post', postSchema);
 
 module.exports = Post;
