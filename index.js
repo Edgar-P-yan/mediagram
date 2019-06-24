@@ -6,7 +6,7 @@ dotenv.config({
 
 const PORT = process.env.PORT || '3000';
 
-require('./app')
+require('./src/app')
   .then(app => {
     app.listen(PORT, () => {
       debug(`Server running on 127.0.0.1:%s`, PORT);
