@@ -28,6 +28,13 @@ followSchema.static('follow', async function(followerId, followingId) {
   }
 });
 
+followSchema.static('getFollowings', async function(userId) {
+  return (await this.aggregate([
+    { $match: { follower: userId } },
+    { $replaceRoot: { newRoot: { id: '$following' } } },
+  ])).map(following => following.id);
+});
+
 const Follow = mongoose.model('Follow', followSchema);
 
 module.exports = Follow;

@@ -12,14 +12,14 @@ module.exports = () => {
       throw new APIError('USER_NOT_FOUND', 404);
     }
 
-    const { count, posts } = await Post.getPaginatedPosts(userId, skip, limit);
+    const { count, posts } = await Post.getPaginatedPosts(
+      userId,
+      skip,
+      limit,
+      req.user._id,
+    );
 
-    res.json({
-      result: {
-        count,
-        posts,
-      },
-    });
+    res.json({ result: { count, posts } });
   };
 };
 

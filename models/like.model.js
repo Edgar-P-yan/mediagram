@@ -25,6 +25,13 @@ likeSchema.static('like', async function(userId, postId) {
   }
 });
 
+likeSchema.static('dislike', async function(userId, postId) {
+  await this.deleteOne({
+    post: postId,
+    user: userId,
+  });
+});
+
 const Like = mongoose.model('Like', likeSchema);
 
 module.exports = Like;

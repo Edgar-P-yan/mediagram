@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 
 module.exports = require('./connections/mongoose-connect')()
+  .then(() => require('./static-server')(app))
   .then(() => require('./connections/redis-sessions')(app))
   .then(() => require('./utils/helmet-config')(app))
   .then(() => require('./utils/common-middlewares')(app))

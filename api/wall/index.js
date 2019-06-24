@@ -7,7 +7,8 @@ module.exports = app => {
 
   router.use(onlyUsers());
 
-  router.use('/profileWall', require('./controllers/get-profile-wall')());
+  router.get('/profileWall', require('./controllers/get-profile-wall')());
+  router.get('/personalWall', require('./controllers/get-personal-wall')());
 
   router.use(errorHandler());
 

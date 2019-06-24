@@ -16,7 +16,7 @@ const userSchema = new Schema(
       },
     },
   },
-  { minimize: false },
+  { minimize: false, id: false },
 );
 
 userSchema.plugin(
