@@ -1,9 +1,14 @@
 {
   "name": "mediagram",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/app.js",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "start": "node index.js",
+    "lint": "eslint -c .eslintrc.json .",
+    "style": "prettier --write **/**.js"
+  },
   "dependencies": {
     "body-parser": "^1.19.0",
     "connect-redis": "^3.4.1",
@@ -21,5 +26,8 @@
     "passport-vkontakte": "^0.3.2",
     "uuid": "^3.3.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "eslint": "^6.0.0",
+    "prettier": "1.18.2"
+  }
 }
