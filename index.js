@@ -1,8 +1,12 @@
 const debug = require('debug')('main');
-const dotenv = require('dotenv');
-dotenv.config({
-  path: `.${process.env.NODE_ENV || 'development'}.env`,
-});
+
+if (process.env.NODE_ENV !== 'production') {
+  const { error } = require('dotenv').config();
+  if (error) {
+    debug('Could not load .env');
+    throw error;
+  }
+}
 
 const PORT = process.env.PORT || '3000';
 
