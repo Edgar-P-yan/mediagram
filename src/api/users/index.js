@@ -7,7 +7,7 @@ module.exports = app => {
 
   router.use(onlyUsers());
 
-  router.get('/get', require('./controllers/get'));
+  router.get('/get', require('./controllers/get')());
   router.get('/profile', require('./controllers/get-profile')());
 
   router.use(errorHandler());
